@@ -1,0 +1,38 @@
+Download OPENCV
+
+Follow the OPENCV installation instruktions
+
+mkdir release
+cd release
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D BUILD_WITH_TIFF=TRUE ..
+
+Download CAFFE
+
+Install BLAS if not installed
+Install Boost if not installed
+
+Install protobuf, glog, gflags, hdf5
+
+Install Python 2.7 (Pain in the ass to use Python 3.+)
+
+cd caffe
+
+Change in the Makefile.config
+
+CPU_ONLY := 1
+
+Install Python requirements
+
+for req in $(cat requirements,txt); do pip install $req; done
+
+Compilation with cmake
+
+mkdir build
+cd build
+cmake -D CPU_ONLY=TRUE ..
+make all
+sudo make install
+make runtest
+make pycaffe
+make distribute
+
